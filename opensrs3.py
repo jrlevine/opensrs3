@@ -281,16 +281,13 @@ class OpenSRS(object):
             "tlds": tlds,
             })
 
-    def close(self):
+    def __del__(self):
         """
-        close the connection
-        useful in environments that complain if it's force closed when the class
-        instance goes out of scope
+        close the connection tp clean up
         """
-        if not self.H:
-            raise OpenSRSHTTPException("Connection already closed")
-        self.H.close()
-        self.H = None
+        if self.H:
+            self.H.close()
+            self.H = None
 
     ### the convenice routines have not been updated and probably
     ### will not work reliably with the current OpenSRS software
