@@ -283,7 +283,7 @@ class OpenSRS(object):
 
     def __del__(self):
         """
-        close the connection tp clean up
+        close the connection to clean up
         """
         if self.H:
             self.H.close()
